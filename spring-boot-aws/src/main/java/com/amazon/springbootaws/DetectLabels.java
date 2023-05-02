@@ -1,4 +1,4 @@
-package com.amazon.springbootaws;
+/* package com.amazon.springbootaws;
 import java.util.List;
 
 import com.amazonaws.services.rekognition.model.BoundingBox;
@@ -15,51 +15,51 @@ import com.amazonaws.services.rekognition.model.AmazonRekognitionException;
 
 public class DetectLabels {
 
-    public static void main(String[] args) throws Exception {
+ public static void main(String[] args) throws Exception {
 
-        String photo = "mansana.png";
-        String bucket = "datoshackaton";
+       String photo = "mansana.png";
+       String bucket = "datoshackaton";
 
-        AmazonRekognition rekognitionClient = AmazonRekognitionClientBuilder.defaultClient();
+       AmazonRekognition rekognitionClient = AmazonRekognitionClientBuilder.standard().withRegion("eu-west-1").build();
 
-        DetectLabelsRequest request = new DetectLabelsRequest()
-                .withImage(new Image().withS3Object(new S3Object().withName(photo).withBucket(bucket)))
-                .withMaxLabels(10).withMinConfidence(75F);
+       DetectLabelsRequest request = new DetectLabelsRequest()
+               .withImage(new Image().withS3Object(new S3Object().withName(photo).withBucket(bucket)))
+               .withMaxLabels(10).withMinConfidence(75F);
 
-        try {
-            DetectLabelsResult result = rekognitionClient.detectLabels(request);
-            List<Label> labels = result.getLabels();
+       try {
+           DetectLabelsResult result = rekognitionClient.detectLabels(request);
+           List<Label> labels = result.getLabels();
 
-            System.out.println("Detected labels for " + photo + "\n");
-            for (Label label : labels) {
-                System.out.println("Label: " + label.getName());
-                System.out.println("Confidence: " + label.getConfidence().toString() + "\n");
+           System.out.println("Detected labels for " + photo + "\n");
+           for (Label label : labels) {
+               System.out.println("Label: " + label.getName());
+               System.out.println("Confidence: " + label.getConfidence().toString() + "\n");
 
-                List<Instance> instances = label.getInstances();
-                System.out.println("Instances of " + label.getName());
-                if (instances.isEmpty()) {
-                    System.out.println("  " + "None");
-                } else {
-                    for (Instance instance : instances) {
-                        System.out.println("  Confidence: " + instance.getConfidence().toString());
-                        System.out.println("  Bounding box: " + instance.getBoundingBox().toString());
-                    }
-                }
-                System.out.println("Parent labels for " + label.getName() + ":");
-                List<Parent> parents = label.getParents();
-                if (parents.isEmpty()) {
-                    System.out.println("  None");
-                } else {
-                    for (Parent parent : parents) {
-                        System.out.println("  " + parent.getName());
-                    }
-                }
-                System.out.println("--------------------");
-                System.out.println();
+               List<Instance> instances = label.getInstances();
+               System.out.println("Instances of " + label.getName());
+               if (instances.isEmpty()) {
+                   System.out.println("  " + "None");
+               } else {
+                   for (Instance instance : instances) {
+                       System.out.println("  Confidence: " + instance.getConfidence().toString());
+                       System.out.println("  Bounding box: " + instance.getBoundingBox().toString());
+                   }
+               }
+               System.out.println("Parent labels for " + label.getName() + ":");
+               List<Parent> parents = label.getParents();
+               if (parents.isEmpty()) {
+                   System.out.println("  None");
+               } else {
+                   for (Parent parent : parents) {
+                       System.out.println("  " + parent.getName());
+                   }
+               }
+               System.out.println("--------------------");
+               System.out.println();
 
-            }
-        } catch (AmazonRekognitionException e) {
-            e.printStackTrace();
-        }
-    }
-}
+           }
+       } catch (AmazonRekognitionException e) {
+           e.printStackTrace();
+       }
+   }
+}*/
